@@ -2,9 +2,18 @@ let brushColor = "#000000";
 let brushSize = 10;
 
 function setup() {
-  let canvas = createCanvas(800, 600);
-  canvas.parent("canvas-wrapper"); // center container
+let canvas = createCanvas(800, 600);
+  canvas.parent("canvas-wrapper");
   background(255);
+
+  // Buttons EINMAL erzeugen
+  saveBtn = createButton('Speichern als PDF');
+  saveBtn.position(10, 10);
+  saveBtn.mousePressed(savePDF);
+
+  printBtn = createButton('Drucken');
+  printBtn.position(150, 10);
+  printBtn.mousePressed(printCanvas);
 
   // Color picker
   const colorPicker = document.getElementById("colorPicker");
@@ -33,4 +42,19 @@ function draw() {
     strokeWeight(brushSize);
     line(mouseX, mouseY, pmouseX, pmouseY);
   }
+}
+
+function keyPressed() {
+  // STRG + P → Drucken
+  if (key === 'p' && keyIsDown(CONTROL)) {
+    printCanvas();
+  }
+}
+
+function savePDF() {
+  saveCanvas('zeichnung', 'pdf');
+}
+
+function printCanvas() {
+  window.print();
 }
