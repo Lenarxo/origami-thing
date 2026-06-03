@@ -18,7 +18,7 @@ body {
 #toolbar {
   display: flex;
   gap: 20px;
-  font-size: 30px;
+  font-size: 62px;
   background-color: deeppink;
   border-radius: 5px;
   border-style: dashed;
