@@ -18,10 +18,20 @@ body {
   display: flex;
   gap: 20px;
   font-size: 18px;
+  background-color: deeppink;
+  border-radius: 5px;
+  border-style: dashed;
+  border-color: beige;
+  color: beige
 }
 
 button {
   padding: 8px 16px;
   font-size: 16px;
   cursor: pointer;
+  background-color: deeppink;
+  border-radius: 5px;
+  border-style: dashed;
+  border-color: beige;
+  color: beige
 }
