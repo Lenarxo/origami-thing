@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  background: #f0f0f0;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#canvas-wrapper {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+#toolbar {
+  display: flex;
+  gap: 20px;
+  font-size: 18px;
+}
+
+button {
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
