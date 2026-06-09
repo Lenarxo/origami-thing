@@ -2,17 +2,17 @@ let brushColor = "#000000";
 let brushSize = 10;
 
 function setup() {
-let canvas = createCanvas(800, 600);
+let canvas = createCanvas(400, 400);
   canvas.parent("canvas-wrapper");
   background(255);
 
   // Buttons EINMAL erzeugen
-  saveBtn = createButton('Speichern als PDF');
-  saveBtn.position(10, 10);
+ saveBtn = createButton('Speichern');
+  saveBtn.parent('buttonBar');
   saveBtn.mousePressed(savePDF);
 
   printBtn = createButton('Drucken');
-  printBtn.position(150, 10);
+  printBtn.parent('buttonBar');
   printBtn.mousePressed(printCanvas);
 
   // Color picker

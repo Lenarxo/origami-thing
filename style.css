@@ -7,7 +7,13 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: chartreuse;
+  background-color: #cdfaa0;
+}
+
+.outFrame {
+  display: flex;
+  flex-direction: row;
+  
 }
 
 #canvas-wrapper {
@@ -17,8 +23,9 @@ body {
 
 #toolbar {
   display: flex;
-  gap: 20px;
-  font-size: 62px;
+  flex-direction: row;
+  gap: 37px;
+  font-size: 22px;
   background-color: deeppink;
   border-radius: 5px;
   border-style: dashed;
@@ -26,13 +33,45 @@ body {
   color: beige
 }
 
+.farbe {
+  display: flex;
+  flex: 1;
+}
+
+.pinselWahl {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+
 button {
-  padding: 8px 16px;
+  padding: 13px 14px;
   font-size: 16px;
   cursor: pointer;
   background-color: deeppink;
-  border-radius: 5px;
+  border-radius: 2px;
   border-style: dashed;
   border-color: beige;
   color: beige
+}
+
+.outButton {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#buttonBar {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  justify-items: flex-end;
+  flex-wrap: wrap;
+}
+
+#buttonBar button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
