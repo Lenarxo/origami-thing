@@ -1,13 +1,13 @@
 let brushColor = "#000000";
 let brushSize = 10;
+let saveBtn, printBtn;
 
 function setup() {
-let canvas = createCanvas(400, 400);
+  let canvas = createCanvas(400, 400);
   canvas.parent("canvas-wrapper");
   background(255);
 
-  // Buttons EINMAL erzeugen
- saveBtn = createButton('Speichern');
+  saveBtn = createButton('Speichern');
   saveBtn.parent('buttonBar');
   saveBtn.mousePressed(savePDF);
 
@@ -15,13 +15,11 @@ let canvas = createCanvas(400, 400);
   printBtn.parent('buttonBar');
   printBtn.mousePressed(printCanvas);
 
-  // Color picker
   const colorPicker = document.getElementById("colorPicker");
   colorPicker.addEventListener("input", () => {
     brushColor = colorPicker.value;
   });
 
-  // Brush size slider
   const sizeSlider = document.getElementById("sizeSlider");
   const sizeLabel = document.getElementById("sizeLabel");
 
@@ -30,10 +28,11 @@ let canvas = createCanvas(400, 400);
     sizeLabel.textContent = brushSize;
   });
 
-  // Clear button
   document.getElementById("clearBtn").addEventListener("click", () => {
     background(255);
   });
+  
+  
 }
 
 function draw() {
@@ -45,14 +44,41 @@ function draw() {
 }
 
 function keyPressed() {
-  // STRG + P → Drucken
   if (key === 'p' && keyIsDown(CONTROL)) {
     printCanvas();
   }
 }
 
 function savePDF() {
-  saveCanvas('zeichnung', 'pdf');
+  const c = document.querySelector('canvas');
+  if (!c) return;
+
+  const imgData = c.toDataURL('image/png');
+
+  const { jsPDF } = window.jspdf;
+  if (!jsPDF) return;
+
+  const pdf = new jsPDF('p', 'mm', 'a4');
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
+
+  const imgWidth = c.width;
+  const imgHeight = c.height;
+  const ratio = imgHeight / imgWidth;
+
+  let w = pageWidth;
+  let h = w * ratio;
+
+  if (h > pageHeight) {
+    h = pageHeight;
+    w = h / ratio;
+  }
+
+  const x = (pageWidth - w) / 2;
+  const y = 0;
+
+  pdf.addImage(imgData, 'PNG', x, y, w, h);
+  pdf.save('zeichnung.pdf');
 }
 
 function printCanvas() {

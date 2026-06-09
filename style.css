@@ -59,14 +59,16 @@ button {
 .outButton {
   display: flex;
   justify-content: flex-end;
+  width: 100%;
 }
 
 #buttonBar {
   display: flex;
   flex-direction: row;
   gap: 12px;
-  justify-items: flex-end;
+  justify-content: flex-end;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 #buttonBar button {
