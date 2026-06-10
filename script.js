@@ -82,5 +82,22 @@ function savePDF() {
 }
 
 function printCanvas() {
-  window.print();
+  const c = document.querySelector('canvas');
+  if (!c) {
+    window.print();
+    return;
+  }
+  
+  // Direkt canvas drucken
+  const img = new Image();
+  img.src = c.toDataURL('image/png');
+  img.onload = () => {
+    const printWindow = window.open('', '', 'height=400,width=600');
+    printWindow.document.write(`<html><head><title>Zeichnung</title></head><body>`);
+    printWindow.document.write(`<img src="${img.src}" style="max-width:100%;height:auto;">`);
+    printWindow.document.write(`</body></html>`);
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+  };
 }
