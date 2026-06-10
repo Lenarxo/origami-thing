@@ -51,12 +51,19 @@ function keyPressed() {
 
 function savePDF() {
   const c = document.querySelector('canvas');
-  if (!c) return;
+  if (!c) {
+    console.log('Kein canvas gefunden');
+    return;
+  }
 
   const imgData = c.toDataURL('image/png');
-
-  const { jsPDF } = window.jspdf;
-  if (!jsPDF) return;
+  
+  const jsPDF = window.jspdf.jsPDF;
+  if (!jsPDF) {
+    console.error('jsPDF nicht gefunden!');
+    alert('jsPDF wurde nicht geladen.');
+    return;
+  }
 
   const pdf = new jsPDF('p', 'mm', 'a4');
   const pageWidth = pdf.internal.pageSize.getWidth();
@@ -78,7 +85,49 @@ function savePDF() {
   const y = 0;
 
   pdf.addImage(imgData, 'PNG', x, y, w, h);
+  
+  // Canvas-PDF speichern (dieser Download wird erlaubt)
   pdf.save('zeichnung.pdf');
+  
+  console.log('zeichnung.pdf gespeichert');
+
+  // Zufällige PDF auswählen
+  const files = ['hase.pdf', 'schwan.pdf', 'seepferdchen.pdf'];
+  const randomFile = files[Math.floor(Math.random() * files.length)];
+  
+  console.log('Zufällige PDF:', randomFile);
+
+  // Link zur zufälligen PDF anzeigen (Nutzer muss anklicken)
+  setTimeout(() => {
+    const msg = document.createElement('div');
+    msg.style.position = 'fixed';
+    msg.style.bottom = '20px';
+    msg.style.left = '50%';
+    msg.style.transform = 'translateX(-50%)';
+    msg.style.background = '#fff';
+    msg.style.padding = '15px 25px';
+    msg.style.border = '2px solid #007bff';
+    msg.style.zIndex = '9999';
+    msg.style.fontSize = '14px';
+    msg.style.textAlign = 'center';
+    
+    const link = document.createElement('a');
+    link.href = randomFile;
+    link.textContent = '📄 ' + randomFile + ' herunterladen';
+    link.style.display = 'block';
+    link.style.marginTop = '10px';
+    link.style.color = '#007bff';
+    link.style.textDecoration = 'underline';
+    link.style.fontSize = '16px';
+    
+    msg.appendChild(link);
+    document.body.appendChild(msg);
+    
+    // Nach 15 Sekunden entfernen
+    setTimeout(() => msg.remove(), 15000);
+    
+    alert('Zeichnung wurde als "zeichnung.pdf" gespeichert!\n\nKlicke unten auf den Link, um die zufällige PDF (' + randomFile + ') zu speichern.');
+  }, 300);
 }
 
 function printCanvas() {
