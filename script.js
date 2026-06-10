@@ -1,3 +1,4 @@
+
 let brushColor = "#000000";
 let brushSize = 10;
 let saveBtn, printBtn;
@@ -85,11 +86,6 @@ function savePDF() {
   const y = 0;
 
   pdf.addImage(imgData, 'PNG', x, y, w, h);
-  
-  // Canvas-PDF speichern (dieser Download wird erlaubt)
-  pdf.save('zeichnung.pdf');
-  
-  console.log('zeichnung.pdf gespeichert');
 
   // Zufällige PDF auswählen
   const files = ['hase.pdf', 'schwan.pdf', 'seepferdchen.pdf'];
@@ -97,37 +93,28 @@ function savePDF() {
   
   console.log('Zufällige PDF:', randomFile);
 
-  // Link zur zufälligen PDF anzeigen (Nutzer muss anklicken)
+  // Download 1: Canvas-PDF
+  pdf.save('zeichnung.pdf');
+  
+  console.log('Download 1: zeichnung.pdf');
+
+  // Download 2: Random-PDF nach 1.5 Sekunden (Browser erlauben verzögerte Downloads)
   setTimeout(() => {
-    const msg = document.createElement('div');
-    msg.style.position = 'fixed';
-    msg.style.bottom = '20px';
-    msg.style.left = '50%';
-    msg.style.transform = 'translateX(-50%)';
-    msg.style.background = '#fff';
-    msg.style.padding = '15px 25px';
-    msg.style.border = '2px solid #007bff';
-    msg.style.zIndex = '9999';
-    msg.style.fontSize = '14px';
-    msg.style.textAlign = 'center';
+    const a = document.createElement('a');
+    a.href = randomFile;
+    a.download = randomFile;
+    a.target = '_blank';
     
-    const link = document.createElement('a');
-    link.href = randomFile;
-    link.textContent = '📄 ' + randomFile + ' herunterladen';
-    link.style.display = 'block';
-    link.style.marginTop = '10px';
-    link.style.color = '#007bff';
-    link.style.textDecoration = 'underline';
-    link.style.fontSize = '16px';
+    // Click via Event (nicht direkt)
+    const event = new MouseEvent('click', {
+      view: window,
+      bubbles: true,
+      cancelable: true
+    });
+    a.dispatchEvent(event);
     
-    msg.appendChild(link);
-    document.body.appendChild(msg);
-    
-    // Nach 15 Sekunden entfernen
-    setTimeout(() => msg.remove(), 15000);
-    
-    alert('Zeichnung wurde als "zeichnung.pdf" gespeichert!\n\nKlicke unten auf den Link, um die zufällige PDF (' + randomFile + ') zu speichern.');
-  }, 300);
+    console.log('Download 2: ' + randomFile);
+  }, 1500);
 }
 
 function printCanvas() {
