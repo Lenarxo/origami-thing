@@ -5,19 +5,31 @@ let img;
 let currentColor;
 let imgLoaded = false;
 
+let tile;
+let tileSize = 400;
+let scaleFactor = 1;
+let scaleSlider;
+
+
 function preload() {
   img = loadImage('waterfall.jpg');
 }
 
 function setup() {
-  // PIXELS MUST BE LOADED BEFORE USING img.get()
-  img.loadPixels();
+  scaleSlider = document.getElementById("scaleSlider");
   
+  tile = createGraphics(tileSize, tileSize);
+  tile.background(255);
+  tile.strokeCap(ROUND);
+
   let canvas = createCanvas(400, 400);
   canvas.parent("canvas-wrapper");
   background(255);
-  
+
   brushColor = color(0);
+
+
+
 
   saveBtn = createButton('Speichern');
   saveBtn.parent('buttonBar');
@@ -26,6 +38,7 @@ function setup() {
   printBtn = createButton('Drucken');
   printBtn.parent('buttonBar');
   printBtn.mousePressed(printCanvas);
+
 
   const sizeSlider = document.getElementById("sizeSlider");
   const sizeLabel = document.getElementById("sizeLabel");
@@ -36,9 +49,10 @@ function setup() {
   });
 
   document.getElementById("clearBtn").addEventListener("click", () => {
-    background(255);
+    tile.background(255); // IMPORTANT: clear tile, not screen
   });
 
+  // color picker image
   const colorPickerImg = document.getElementById("colorPickerImg");
 
   colorPickerImg.addEventListener("click", (e) => {
@@ -58,15 +72,10 @@ function setup() {
       0,
       img.height - 1
     );
-  
+
     const picked = img.get(imgX, imgY);
 
-    brushColor = color(
-      picked[0],
-      picked[1],
-      picked[2]
-    );
-
+    brushColor = color(picked[0], picked[1], picked[2]);
     updateColorDisplay();
   });
 
@@ -75,10 +84,40 @@ function setup() {
 }
 
 function draw() {
-  if (mouseIsPressed) {
-    stroke(brushColor);
-    strokeWeight(brushSize);
-    line(mouseX, mouseY, pmouseX, pmouseY);
+  background(255);
+
+  scaleFactor = parseFloat(scaleSlider.value);
+
+  let w = tileSize * scaleFactor;
+  let h = tileSize * scaleFactor;
+
+  // --- DRAW PATTERN ---
+  for (let x = 0; x < width; x += w) {
+    for (let y = 0; y < height; y += h) {
+      image(tile, x, y, w, h);
+    }
+  }
+
+  // --- DRAW INTO TILE ---
+  if (mouseIsPressed &&
+    !window.sliderActive &&
+    mouseX >= 0 && mouseX < width &&
+    mouseY >= 0 && mouseY < height) {
+
+  // Mausposition unabhängig vom Scale berechnen
+  let x = (mouseX / scaleFactor) % tileSize;
+  let y = (mouseY / scaleFactor) % tileSize;
+  let px = (pmouseX / scaleFactor) % tileSize;
+  let py = (pmouseY / scaleFactor) % tileSize;
+
+  // Wrap-around Linien verhindern
+  let dx = abs(x - px);
+  let dy = abs(y - py);
+  if (dx > tileSize/2 || dy > tileSize/2) return;
+
+  tile.stroke(brushColor);
+  tile.strokeWeight(brushSize);
+  tile.line(x, y, px, py);
   }
 }
 

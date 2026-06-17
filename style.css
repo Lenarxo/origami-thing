@@ -17,7 +17,7 @@ body {
 }
 
 #colorPickerImg {
-  border: 5px solid red;
+  border: 5px solid #00e2ff;
   position: relative;
   z-index: 9999;
 }
