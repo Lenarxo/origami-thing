@@ -1,12 +1,23 @@
-
-let brushColor = "#000000";
+let brushColor;
 let brushSize = 10;
 let saveBtn, printBtn;
+let img;
+let currentColor;
+let imgLoaded = false;
+
+function preload() {
+  img = loadImage('waterfall.jpg');
+}
 
 function setup() {
+  // PIXELS MUST BE LOADED BEFORE USING img.get()
+  img.loadPixels();
+  
   let canvas = createCanvas(400, 400);
   canvas.parent("canvas-wrapper");
   background(255);
+  
+  brushColor = color(0);
 
   saveBtn = createButton('Speichern');
   saveBtn.parent('buttonBar');
@@ -15,11 +26,6 @@ function setup() {
   printBtn = createButton('Drucken');
   printBtn.parent('buttonBar');
   printBtn.mousePressed(printCanvas);
-
-  const colorPicker = document.getElementById("colorPicker");
-  colorPicker.addEventListener("input", () => {
-    brushColor = colorPicker.value;
-  });
 
   const sizeSlider = document.getElementById("sizeSlider");
   const sizeLabel = document.getElementById("sizeLabel");
@@ -32,8 +38,40 @@ function setup() {
   document.getElementById("clearBtn").addEventListener("click", () => {
     background(255);
   });
+
+  const colorPickerImg = document.getElementById("colorPickerImg");
+
+  colorPickerImg.addEventListener("click", (e) => {
+    const bounds = colorPickerImg.getBoundingClientRect();
+
+    const mouseX = e.clientX - bounds.left;
+    const mouseY = e.clientY - bounds.top;
+
+    const imgX = constrain(
+      floor(map(mouseX, 0, bounds.width, 0, img.width)),
+      0,
+      img.width - 1
+    );
+
+    const imgY = constrain(
+      floor(map(mouseY, 0, bounds.height, 0, img.height)),
+      0,
+      img.height - 1
+    );
   
-  
+    const picked = img.get(imgX, imgY);
+
+    brushColor = color(
+      picked[0],
+      picked[1],
+      picked[2]
+    );
+
+    updateColorDisplay();
+  });
+
+  currentColor = color(0, 0, 0);
+  updateColorDisplay();
 }
 
 function draw() {
@@ -44,6 +82,26 @@ function draw() {
   }
 }
 
+function rgbToHex(r, g, b) {
+  let hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+  console.log("rgbToHex:", r, g, b, "->", hex);
+  return hex;
+}
+
+function updateColorDisplay() {
+  const display = document.getElementById("currentColorDisplay");
+
+  if (display) {
+
+    const r = red(brushColor);
+    const g = green(brushColor);
+    const b = blue(brushColor);
+
+    display.style.backgroundColor =
+      `rgb(${r}, ${g}, ${b})`;
+  }
+
+}
 function keyPressed() {
   if (key === 'p' && keyIsDown(CONTROL)) {
     printCanvas();

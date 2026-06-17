@@ -4,29 +4,28 @@
   <meta charset="UTF-8">
   <title>Simple Drawing Tool</title>
 
- <script src="https://cdn.jsdelivr.net/npm/p5@1.11.13/lib/p5.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/p5@1.11.13/lib/addons/p5.sound.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
- <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.esm.min.js"></script>
-  
+ 
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
 </head>
 <body>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.11.13/lib/p5.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/p5@1.11.13/lib/addons/p5.sound.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+ <--<script src="https://unpkg.com/pdf-lib/dist/pdf-lib.esm.min.js"></script>*/-->
+  
 
   <div> About </div>
-  
   <div class="allesDrin"> 
   
   <div class="outFrame">
     
     <div id="toolbar">
       
-      <div class="farbe">
-      <label>Farbe:
-        <input type="color" id="colorPicker" value="#000000">
-      </label>
-      </div>
+        <div class="farbe">
+          <label>Farbe:</label>
+          <img id="colorPickerImg" src="waterfall.jpg" alt="Color Picker" style="width: 200px; height: 150px; cursor: pointer;">
+          <div id="currentColorDisplay" style="width: 50px; height: 30px; border: 1px solid #000; margin-top: 5px;"></div>
+        </div>
 
       <div class="pinselWahl"> 
       <label>Pinselgröße:

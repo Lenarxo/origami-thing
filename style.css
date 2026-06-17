@@ -16,9 +16,20 @@ body {
   
 }
 
+#colorPickerImg {
+  border: 5px solid red;
+  position: relative;
+  z-index: 9999;
+}
+
+canvas {
+  pointer-events: none;
+}
+
 #canvas-wrapper {
   position: relative;
   margin-bottom: 20px;
+   z-index: 1;
 }
 
 #toolbar {
@@ -30,7 +41,8 @@ body {
   border-radius: 5px;
   border-style: dashed;
   border-color: beige;
-  color: beige
+  color: beige;
+   z-index: 2;
 }
 
 .farbe {
