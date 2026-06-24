@@ -1,13 +1,13 @@
 body {
   margin: 0;
-  background: #f0f0f0;
+  
   height: 100vh;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #cdfaa0;
+
 }
 
 .outFrame {
@@ -17,7 +17,6 @@ body {
 }
 
 #colorPickerImg {
-  border: 5px solid #00e2ff;
   position: relative;
   z-index: 9999;
 }
@@ -28,7 +27,6 @@ canvas {
 
 #canvas-wrapper {
   position: relative;
-  margin-bottom: 20px;
    z-index: 1;
 }
 
@@ -37,9 +35,11 @@ canvas {
   flex-direction: row;
   gap: 37px;
   font-size: 22px;
-  background-color: deeppink;
+  background-color: #FFFCE5;
   border-radius: 5px;
-  border-style: dashed;
+  border: dotted 20px #000;
+  
+  
   border-color: beige;
   color: beige;
    z-index: 2;
@@ -61,7 +61,7 @@ button {
   padding: 13px 14px;
   font-size: 16px;
   cursor: pointer;
-  background-color: deeppink;
+  background-color: #FFFCE5;
   border-radius: 2px;
   border-style: dashed;
   border-color: beige;
@@ -88,4 +88,19 @@ button {
   border: none;
   border-radius: 6px;
   cursor: pointer;
+}
+
+.about {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+#aboutBar {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
 }
