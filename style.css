@@ -37,28 +37,30 @@ canvas {
   font-size: 22px;
   background-color: #FFFCE5;
   border-radius: 5px;
-  border: dotted 20px #000;
+  border: dotted 20px;
   
   
-  border-color: beige;
+  border-color: #ce17ab;
   color: beige;
    z-index: 2;
 }
 
 .farbe {
   display: flex;
-  flex: 1;
+  flex: 1 86px;
 }
 
 .pinselWahl {
   display: flex;
   flex: 1;
   flex-direction: column;
+  flex-grow: 0.3;
 }
 
 
 button {
   padding: 13px 14px;
+  width: 120px;
   font-size: 16px;
   cursor: pointer;
   background-color: #FFFCE5;
@@ -88,6 +90,8 @@ button {
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  transform: translateY(-69px);
+  z-index: 5;
 }
 
 .about {
@@ -103,4 +107,132 @@ button {
   justify-content: flex-start;
   flex-wrap: wrap;
   width: 100%;
+}
+
+#aboutBar button {
+  transform: translateY(81px);
+  z-index: 5;
+}
+
+
+
+
+
+
+
+
+/*#sizeSlider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 71px;
+  height: 62px;
+  background: #f91ecb;
+  border-radius: 999px;
+  outline: none;
+}
+*/
+
+
+#sizeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background-image: url("stift.jpg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+#sizeSlider::-moz-range-thumb {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background-image: url("stift.jpg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+
+#sizeSlider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 170px;
+  height: 81px;
+  background: transparent;
+}
+
+#sizeSlider::-webkit-slider-runnable-track {
+  height: 40px;
+  background-image: url("track.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 5px;
+}
+
+#sizeSlider::-moz-range-track {
+  height: 40px;
+  background-image: url("track.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 3px;
+}
+
+
+
+#scaleSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background-image: url("stift.jpg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+#scaleSlider::-moz-range-thumb {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background-image: url("stift.jpg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+
+#scaleSlider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 170px;
+  height: 81px;
+  background: transparent;
+}
+
+#scaleSlider::-webkit-slider-runnable-track {
+  height: 40px;
+  background-image: url("track.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 5px;
+}
+
+#scaleSlider::-moz-range-track {
+  height: 40px;
+  background-image: url("track.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 3px;
 }

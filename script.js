@@ -22,7 +22,7 @@ function setup() {
   tile.background(255);
   tile.strokeCap(ROUND);
 
-  let canvas = createCanvas(400, 400);
+  let canvas = createCanvas(500, 500);
   canvas.parent("canvas-wrapper");
   background(255);
 
@@ -35,8 +35,8 @@ function setup() {
   saveBtn.parent('buttonBar');
   saveBtn.mousePressed(savePDF);
   
-  saveBtn.style('width', '300px');
-  saveBtn.style('height', '300px');
+  saveBtn.style('width', '400px');
+  saveBtn.style('height', '400px');
   saveBtn.style('border', 'none');
   saveBtn.style('background', 'url("save.svg") no-repeat center / contain');
   saveBtn.style('cursor', 'pointer');
@@ -48,8 +48,8 @@ function setup() {
     window.location.href = 'about.html';
   });
 
-  aboutBtn.style('width', '300px');
-  aboutBtn.style('height', '300px');
+  aboutBtn.style('width', '400px');
+  aboutBtn.style('height', '400px');
   aboutBtn.style('border', 'none');
   aboutBtn.style('background', 'url("about.svg") no-repeat center / contain');
   aboutBtn.style('cursor', 'pointer');
