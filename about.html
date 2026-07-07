@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.11.13/lib/p5.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>about</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #FFFCE5;
+    }
+
+    .outAbout {
+      width: max-content;
+      height: max-content;
+      display: flex;
+      align-items: center;
+    }
+
+    .aboutFrame {
+      width: 500px;
+      height: 500px;
+      border: solid;
+      border-radius: 4px;
+      background-color: #ffffff
+    }
+
+    .backBtn {
+      background: #ffffff;
+      color: #010024;
+      border: 2px solid #010024;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-family: inherit;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      margin-top: 20px;
+    }
+
+    .backBtn:hover {
+      background: #010024;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <div class="outAbout">
+    <div class="aboutFrame">
+      <p>Hi, here is everything you need to know very soon!</p>
+    </div>
+  </div>
+
+  <div id="back"></div>
+
+  <script>
+    let backBtn;
+
+    function setup() {
+      noCanvas();
+      backBtn = createButton('go back!');
+      backBtn.parent('back');
+      backBtn.class('backBtn');
+      backBtn.mousePressed(() => {
+        window.location.href = 'index.html';
+      });
+    }
+  </script>
+</body>
+</html>

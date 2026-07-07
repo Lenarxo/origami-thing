@@ -2,22 +2,25 @@ let brushColor;
 let brushSize = 10;
 let saveBtn, printBtn;
 let img;
+let stiftImg;
 let currentColor;
 let imgLoaded = false;
 
 let tile;
 let tile2;
-let tile3; // not needed anymore, but keeping the name out would be cleaner
 
-let tileSize = 400;
+let tileSize = 300;
 let scaleFactor = 1;
 let scaleSlider;
 
 let currentBrush = 1;
-let brush1Btn, brush2Btn, brush3Btn;
+let brush1Btn, brush2Btn, brush3Btn, brush4Btn;
+let imgSpawnCount = 0.01;
+let imgSpawnChance = 0.2;
 
 function preload() {
   img = loadImage('wasserfall.png');
+  stiftImg = loadImage('stift.jpg');
 }
 
 function setup() {
@@ -31,11 +34,11 @@ function setup() {
   tile2.clear();
   tile2.strokeCap(ROUND);
 
-  let canvas = createCanvas(500, 500);
-  canvas.parent("canvas-wrapper");
+  let canvas = createCanvas(300, 300);
+  canvas.parent("canvasPos");
   background(255);
 
-  brushColor = color(0);
+  brushColor = color(230, 20, 200);
 
   saveBtn = createButton('');
   saveBtn.parent('buttonBar');
@@ -59,23 +62,40 @@ function setup() {
   aboutBtn.style('background', 'url("about.svg") no-repeat center / contain');
   aboutBtn.style('cursor', 'pointer');
 
-  brush1Btn = createButton('Brush 1');
-  brush1Btn.parent('buttonBar');
-  brush1Btn.mousePressed(() => {
-    currentBrush = 1;
-  });
+  
+  
+  
+brush1Btn = createButton('Brush 1');
+brush1Btn.parent('buttonWahl');
+brush1Btn.class('brushBtn');
+brush1Btn.mousePressed(() => {
+  currentBrush = 1;
+});
 
-  brush2Btn = createButton('Brush 2');
-  brush2Btn.parent('buttonBar');
-  brush2Btn.mousePressed(() => {
-    currentBrush = 2;
-  });
+brush2Btn = createButton('Brush 2');
+brush2Btn.parent('buttonWahl');
+brush2Btn.class('brushBtn');
+brush2Btn.mousePressed(() => {
+  currentBrush = 2;
+});
 
-  brush3Btn = createButton('Brush 3');
-  brush3Btn.parent('buttonBar');
-  brush3Btn.mousePressed(() => {
-    currentBrush = 3;
-  });
+brush3Btn = createButton('Brush 3');
+brush3Btn.parent('buttonWahl');
+brush3Btn.class('brushBtn');
+brush3Btn.mousePressed(() => {
+  currentBrush = 3;
+});
+
+brush4Btn = createButton('Brush 4');
+brush4Btn.parent('buttonWahl');
+brush4Btn.class('brushBtn');
+brush4Btn.mousePressed(() => {
+  currentBrush = 4;
+});
+  
+  
+  
+  
 
   const sizeSlider = document.getElementById("sizeSlider");
   const sizeLabel = document.getElementById("sizeLabel");
@@ -165,7 +185,7 @@ function draw() {
           let sx = (x + cos(angle) * r + tileSize) % tileSize;
           let sy = (y + sin(angle) * r + tileSize) % tileSize;
 
-          let size = random(4, 8);
+          let size = random(4, 9);
           let alpha = random(80, 200);
 
           tile.noStroke();
@@ -181,8 +201,24 @@ function draw() {
       tile2.stroke(brushColor);
       tile2.strokeWeight(brushSize);
       tile2.line(x, y, px, py);
+    } 
+    else if (currentBrush === 4) {
+  for (let i = 0; i < imgSpawnCount; i++) {
+    if (random() < imgSpawnChance) {
+      let offsetX = random(-10, 10);
+      let offsetY = random(-10, 10);
+      let stampSize = brushSize * 2;
+      
+      tile.push();
+      tile.tint(red(brushColor), green(brushColor), blue(brushColor));
+      tile.imageMode(CENTER);
+      tile.image(stiftImg, x + offsetX, y + offsetY, stampSize, stampSize);
+      tile.imageMode(CORNER);
+      tile.pop();
     }
   }
+}
+}
 }
 function rgbToHex(r, g, b) {
   let hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);

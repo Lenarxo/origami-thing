@@ -29,30 +29,35 @@
       
         <div class="farbe">
         
-          <img id="colorPickerImg" src="wasserfall.png" alt="Color Picker" style="width: 400px; height: 500px; cursor: pointer;">
+          <img id="colorPickerImg" src="wasserfall.png" alt="Color Picker" style="width: 300px; height: 400px; cursor: pointer;">
           <div id="currentColorDisplay" style="width: 30px; height: 30px; border-radius: 2px; border: 3px solid #010024; margin-top: 5px;"></div>
         </div>
 
       <div class="pinselWahl"> 
         
-        <div class="buttonWahl">
+        <label for="buttonWahl">Brushes</label>
+        <div class="buttonWahl" id="buttonWahl"></div>
         
-        </div>
+        
       <label>Pinselgröße:
         <input type="range" id="sizeSlider" min="1" max="50" value="10">
-        <span id="sizeLabel">10</span> px
       </label>
 
-      <button id="clearBtn">Löschen</button>
+      
         
         
   <label for="scaleSlider">Pattern Scale</label>
   <input id="scaleSlider" type="range" min="0.1" max="1" value="1" step="0.1">
 
+    <button id="clearBtn">Löschen</button>  
+        
+      </div>
         
     </div>
       
-        <div id="canvas-wrapper"></div>
+        <div id="canvas-wrapper">
+          
+          <div id="canvasPos"></div>
       
     </div>
 
