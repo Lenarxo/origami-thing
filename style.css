@@ -42,12 +42,13 @@ canvas {
   
   border-color: #ce17ab;
   color: beige;
-   z-index: 2;
+   
 }
 
 .farbe {
   display: flex;
   flex: 1 86px;
+  z-index: 25;
 }
 
 .pinselWahl {
@@ -111,7 +112,7 @@ button {
 
 #aboutBar button {
   transform: translateY(81px);
-  z-index: 5;
+  z-index: 3;
 }
 
 

@@ -6,10 +6,15 @@ let currentColor;
 let imgLoaded = false;
 
 let tile;
+let tile2;
+let tile3; // not needed anymore, but keeping the name out would be cleaner
+
 let tileSize = 400;
 let scaleFactor = 1;
 let scaleSlider;
 
+let currentBrush = 1;
+let brush1Btn, brush2Btn, brush3Btn;
 
 function preload() {
   img = loadImage('wasserfall.png');
@@ -22,14 +27,15 @@ function setup() {
   tile.background(255);
   tile.strokeCap(ROUND);
 
+  tile2 = createGraphics(tileSize, tileSize);
+  tile2.clear();
+  tile2.strokeCap(ROUND);
+
   let canvas = createCanvas(500, 500);
   canvas.parent("canvas-wrapper");
   background(255);
 
   brushColor = color(0);
-
-
-
 
   saveBtn = createButton('');
   saveBtn.parent('buttonBar');
@@ -40,7 +46,6 @@ function setup() {
   saveBtn.style('border', 'none');
   saveBtn.style('background', 'url("save.svg") no-repeat center / contain');
   saveBtn.style('cursor', 'pointer');
-  
   
   aboutBtn = createButton('');
   aboutBtn.parent('aboutBar');
@@ -54,7 +59,23 @@ function setup() {
   aboutBtn.style('background', 'url("about.svg") no-repeat center / contain');
   aboutBtn.style('cursor', 'pointer');
 
+  brush1Btn = createButton('Brush 1');
+  brush1Btn.parent('buttonBar');
+  brush1Btn.mousePressed(() => {
+    currentBrush = 1;
+  });
 
+  brush2Btn = createButton('Brush 2');
+  brush2Btn.parent('buttonBar');
+  brush2Btn.mousePressed(() => {
+    currentBrush = 2;
+  });
+
+  brush3Btn = createButton('Brush 3');
+  brush3Btn.parent('buttonBar');
+  brush3Btn.mousePressed(() => {
+    currentBrush = 3;
+  });
 
   const sizeSlider = document.getElementById("sizeSlider");
   const sizeLabel = document.getElementById("sizeLabel");
@@ -65,10 +86,10 @@ function setup() {
   });
 
   document.getElementById("clearBtn").addEventListener("click", () => {
-    tile.background(255); // IMPORTANT: clear tile, not screen
+    tile.background(255);
+    tile2.clear();
   });
 
-  // color picker image
   const colorPickerImg = document.getElementById("colorPickerImg");
 
   colorPickerImg.addEventListener("click", (e) => {
@@ -107,36 +128,62 @@ function draw() {
   let w = tileSize * scaleFactor;
   let h = tileSize * scaleFactor;
 
-  // --- DRAW PATTERN ---
   for (let x = 0; x < width; x += w) {
     for (let y = 0; y < height; y += h) {
       image(tile, x, y, w, h);
+
+      push();
+      tint(255, 128);
+      image(tile2, x, y, w, h);
+      pop();
     }
   }
 
-  // --- DRAW INTO TILE ---
   if (mouseIsPressed &&
-    !window.sliderActive &&
-    mouseX >= 0 && mouseX < width &&
-    mouseY >= 0 && mouseY < height) {
+      !window.sliderActive &&
+      mouseX >= 0 && mouseX < width &&
+      mouseY >= 0 && mouseY < height) {
 
-  // Mausposition unabhängig vom Scale berechnen
-  let x = (mouseX / scaleFactor) % tileSize;
-  let y = (mouseY / scaleFactor) % tileSize;
-  let px = (pmouseX / scaleFactor) % tileSize;
-  let py = (pmouseY / scaleFactor) % tileSize;
+    let x = (mouseX / scaleFactor) % tileSize;
+    let y = (mouseY / scaleFactor) % tileSize;
+    let px = (pmouseX / scaleFactor) % tileSize;
+    let py = (pmouseY / scaleFactor) % tileSize;
 
-  // Wrap-around Linien verhindern
-  let dx = abs(x - px);
-  let dy = abs(y - py);
-  if (dx > tileSize/2 || dy > tileSize/2) return;
+    let dx = abs(x - px);
+    let dy = abs(y - py);
+    if (dx > tileSize / 2 || dy > tileSize / 2) return;
 
-  tile.stroke(brushColor);
-  tile.strokeWeight(brushSize);
-  tile.line(x, y, px, py);
+    if (currentBrush === 1 || currentBrush === 3) {
+      if (currentBrush === 3) {
+        let count = 3;
+        let radius = 15;
+
+        for (let i = 0; i < count; i++) {
+          let angle = random(TWO_PI);
+          let r = random(radius);
+
+          let sx = (x + cos(angle) * r + tileSize) % tileSize;
+          let sy = (y + sin(angle) * r + tileSize) % tileSize;
+
+          let size = random(2, 8);
+          let alpha = random(80, 200);
+
+          tile.noStroke();
+          tile.fill(brushColor);
+          tile.ellipse(sx, sy, size, size);
+        }
+      } else {
+        tile.stroke(brushColor);
+        tile.strokeWeight(brushSize);
+        tile.line(x, y, px, py);
+      }
+    } else if (currentBrush === 2) {
+      tile2.stroke(brushColor);
+      tile2.strokeWeight(brushSize);
+      tile2.line(x, y, px, py);
+    }
   }
 }
-
 function rgbToHex(r, g, b) {
   let hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
   console.log("rgbToHex:", r, g, b, "->", hex);
