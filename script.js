@@ -165,7 +165,7 @@ function draw() {
           let sx = (x + cos(angle) * r + tileSize) % tileSize;
           let sy = (y + sin(angle) * r + tileSize) % tileSize;
 
-          let size = random(2, 8);
+          let size = random(4, 8);
           let alpha = random(80, 200);
 
           tile.noStroke();

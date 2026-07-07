@@ -58,6 +58,15 @@ canvas {
   flex-grow: 0.3;
 }
 
+.buttonWahl {
+  display: flex;
+  flex-direction: row;
+  background-color: #ce17ab;
+  width: 250px;
+  height: 200px;
+  
+}
+
 
 button {
   padding: 13px 14px;
