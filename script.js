@@ -20,7 +20,7 @@ let imgSpawnChance = 0.2;
 
 function preload() {
   img = loadImage('wasserfall.png');
-  stiftImg = loadImage('stift.jpg');
+  stiftImg = loadImage('brushflower.png');
 }
 
 function setup() {
@@ -65,34 +65,53 @@ function setup() {
   
   
   
-brush1Btn = createButton('Brush 1');
+brush1Btn = createButton('');
 brush1Btn.parent('buttonWahl');
 brush1Btn.class('brushBtn');
 brush1Btn.mousePressed(() => {
   currentBrush = 1;
 });
+brush1Btn.style('width', '60px');
+brush1Btn.style('height', '60px');
+brush1Btn.style('border', 'none');
+brush1Btn.style('background', 'url("brush1.png") no-repeat center / contain');
+brush1Btn.style('cursor', 'pointer');
 
-brush2Btn = createButton('Brush 2');
+brush2Btn = createButton('');
 brush2Btn.parent('buttonWahl');
 brush2Btn.class('brushBtn');
 brush2Btn.mousePressed(() => {
   currentBrush = 2;
 });
+brush2Btn.style('width', '60px');
+brush2Btn.style('height', '60px');
+brush2Btn.style('border', 'none');
+brush2Btn.style('background', 'url("brush2.png") no-repeat center / contain');
+brush2Btn.style('cursor', 'pointer');
 
-brush3Btn = createButton('Brush 3');
+brush3Btn = createButton('');
 brush3Btn.parent('buttonWahl');
 brush3Btn.class('brushBtn');
 brush3Btn.mousePressed(() => {
   currentBrush = 3;
 });
+brush3Btn.style('width', '60px');
+brush3Btn.style('height', '60px');
+brush3Btn.style('border', 'none');
+brush3Btn.style('background', 'url("brush3.png") no-repeat center / contain');
+brush3Btn.style('cursor', 'pointer');
 
-brush4Btn = createButton('Brush 4');
+brush4Btn = createButton('');
 brush4Btn.parent('buttonWahl');
 brush4Btn.class('brushBtn');
 brush4Btn.mousePressed(() => {
   currentBrush = 4;
 });
-  
+brush4Btn.style('width', '60px');
+brush4Btn.style('height', '60px');
+brush4Btn.style('border', 'none');
+brush4Btn.style('background', 'url("brush4.png") no-repeat center / contain');
+brush4Btn.style('cursor', 'pointer');
   
   
   
@@ -173,8 +192,8 @@ function draw() {
     let dy = abs(y - py);
     if (dx > tileSize / 2 || dy > tileSize / 2) return;
 
-    if (currentBrush === 1 || currentBrush === 3) {
-      if (currentBrush === 3) {
+    if (currentBrush === 1 || currentBrush === 4) {
+      if (currentBrush === 4) {
         let count = 3;
         let radius = 15;
 
@@ -202,7 +221,7 @@ function draw() {
       tile2.strokeWeight(brushSize);
       tile2.line(x, y, px, py);
     } 
-    else if (currentBrush === 4) {
+    else if (currentBrush === 3) {
   for (let i = 0; i < imgSpawnCount; i++) {
     if (random() < imgSpawnChance) {
       let offsetX = random(-10, 10);
@@ -220,6 +239,10 @@ function draw() {
 }
 }
 }
+
+
+
+
 function rgbToHex(r, g, b) {
   let hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
   console.log("rgbToHex:", r, g, b, "->", hex);
