@@ -23,18 +23,21 @@
     
   <div class="about">
   <div id="aboutBar"></div>
+    
+    <button id="clearBtn">new!</button>  
 </div>
     
     
   
   <div class="outFrame">
+  
     
     <div id="toolbar">
       
         <div class="farbe">
         
-          <img id="colorPickerImg" src="wasserfall.png" alt="Color Picker" style="width: 300px; height: 400px; cursor: pointer;">
-          <div id="currentColorDisplay" style="width: 30px; height: 30px; border-radius: 2px; border: 3px solid #010024; margin-top: 5px;"></div>
+          <img id="colorPickerImg" src="wasserfall.png" alt="Color Picker" style="width: 270px; height: 370px; cursor: pointer; transform: translateX(20px);">
+          <div id="currentColorDisplay" style="width: 30px; height: 30px; border-radius: 2px; border: 3px solid #010024; margin-top: 5px; transform: translateX(-30px);"></div>
         </div>
 
       <div class="pinselWahl"> 
@@ -43,17 +46,17 @@
         <div class="buttonWahl" id="buttonWahl"></div>
         
         
-      <label for="slider1" style="color: red; font-size: 20px;">Pinselgröße:
+      <label for="slider1" style="color: red; font-size: 20px;">Size
         <input type="range" id="sizeSlider" min="1" max="50" value="10">
       </label>
 
       
         
         
-  <label for="scaleSlider" style="color: red; font-size: 20px;">Pattern Scale</label>
+  <label for="scaleSlider" style="color: red; font-size: 20px;">Scale</label>
   <input id="scaleSlider" type="range" min="0.1" max="1" value="1" step="0.1">
 
-    <button id="clearBtn">Löschen</button>  
+    
         
       </div>
         
