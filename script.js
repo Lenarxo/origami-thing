@@ -71,10 +71,10 @@ brush1Btn.class('brushBtn');
 brush1Btn.mousePressed(() => {
   currentBrush = 1;
 });
-brush1Btn.style('width', '60px');
-brush1Btn.style('height', '60px');
+brush1Btn.style('width', '70px');
+brush1Btn.style('height', '70px');
 brush1Btn.style('border', 'none');
-brush1Btn.style('background', 'url("brush1.png") no-repeat center / contain');
+brush1Btn.style('background', 'url("button1.svg") no-repeat center / contain');
 brush1Btn.style('cursor', 'pointer');
 
 brush2Btn = createButton('');
@@ -83,10 +83,10 @@ brush2Btn.class('brushBtn');
 brush2Btn.mousePressed(() => {
   currentBrush = 2;
 });
-brush2Btn.style('width', '60px');
-brush2Btn.style('height', '60px');
+brush2Btn.style('width', '70px');
+brush2Btn.style('height', '70px');
 brush2Btn.style('border', 'none');
-brush2Btn.style('background', 'url("brush2.png") no-repeat center / contain');
+brush2Btn.style('background', 'url("button2.svg") no-repeat center / contain');
 brush2Btn.style('cursor', 'pointer');
 
 brush3Btn = createButton('');
@@ -95,10 +95,10 @@ brush3Btn.class('brushBtn');
 brush3Btn.mousePressed(() => {
   currentBrush = 3;
 });
-brush3Btn.style('width', '60px');
-brush3Btn.style('height', '60px');
+brush3Btn.style('width', '70px');
+brush3Btn.style('height', '70px');
 brush3Btn.style('border', 'none');
-brush3Btn.style('background', 'url("brush3.png") no-repeat center / contain');
+brush3Btn.style('background', 'url("blumebtn.svg") no-repeat center / contain');
 brush3Btn.style('cursor', 'pointer');
 
 brush4Btn = createButton('');
@@ -107,10 +107,10 @@ brush4Btn.class('brushBtn');
 brush4Btn.mousePressed(() => {
   currentBrush = 4;
 });
-brush4Btn.style('width', '60px');
-brush4Btn.style('height', '60px');
+brush4Btn.style('width', '70px');
+brush4Btn.style('height', '70px');
 brush4Btn.style('border', 'none');
-brush4Btn.style('background', 'url("brush4.png") no-repeat center / contain');
+brush4Btn.style('background', 'url("button4.svg") no-repeat center / contain');
 brush4Btn.style('cursor', 'pointer');
   
   
