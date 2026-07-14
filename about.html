@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>about</title>
-  <link rel="icon" type="image/png" href="blob.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="blob2.png" sizes="192x192">
   <style>
     
     @font-face {
@@ -61,7 +61,7 @@
     
     .abouttext {
       color: #D60000;
-  font-size: 21px;
+  font-size: 22px;
   letter-spacing: -0.5px;
   line-height: 19pt;
   text-align: center;
@@ -80,6 +80,16 @@
       padding-top: 50px;
       cursor: pointer;
     }
+    
+    
+    .paperin {
+      width: 614px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
 
 
   </style>
@@ -91,19 +101,19 @@
       <div class="abouttext">
       
       <p>Hi and welcome to origami thing! 
-        <br> This is a tool that you can design your very own origami paper in! 
+        <br> This is a tool where you can design your very own origami paper in! 
         <br>I got inspired by all the beautiful traditional japanese patterns you can  
-        <br> find either printed on paper or on fabric, 
-      would'nt it be fun to create your 
+        <br> find either printed on paper or fabric, so would'nt it be fun to create your 
         <br> own and fold it into a little origami? 
         
         
         <br> <br> Here is how you do it:
         
-        <br> Choose a color from the waterfall, choose your brush, 
+        <br> Choose a color from the waterfall, select your brush, 
         <br> draw on the canvas and scale your pattern to your desired size! 
-        <br> Save it, and you will get a little surprise origami instruction with your
-        <br> pattern PDF. Print it, cut off the excess to end up with a square. 
+        <br> Save it, and you will get a little surprise origami instruction along with your
+        <br> pattern PDF. Print it, cut off the white excess to end up with a square. 
+        <br>
         <br> And now; Happy folding! 
         <br> xoxo lena_rsnkrnz
       </p>
@@ -112,9 +122,13 @@
     </div>
   </div>
   
-  
+   <div class="paperin">
+    <img id="colorPickerImg" src="paperin.svg" alt="instruction" style="width: 366px; height: 382px; transform: translateX();">
+ 
 
   <div id="back"></div>
+  
+  </div>
 
   <script>
     let backBtn;
