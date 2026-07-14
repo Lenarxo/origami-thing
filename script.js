@@ -19,8 +19,8 @@ let imgSpawnCount = 0.01;
 let imgSpawnChance = 0.2;
 
 function preload() {
-  img = loadImage('wasserfall.png');
-  stiftImg = loadImage('brushflower.png');
+  img = loadImage('wasser2.png');
+  stiftImg = loadImage('brushflower2.png');
 }
 
 function setup() {
@@ -192,8 +192,8 @@ function draw() {
     let dy = abs(y - py);
     if (dx > tileSize / 2 || dy > tileSize / 2) return;
 
-    if (currentBrush === 1 || currentBrush === 4) {
-      if (currentBrush === 4) {
+    if (currentBrush === 1 || currentBrush === 2) {
+      if (currentBrush === 2) {
         let count = 3;
         let radius = 15;
 
@@ -216,7 +216,7 @@ function draw() {
         tile.strokeWeight(brushSize);
         tile.line(x, y, px, py);
       }
-    } else if (currentBrush === 2) {
+    } else if (currentBrush === 4) {
       tile2.stroke(brushColor);
       tile2.strokeWeight(brushSize);
       tile2.line(x, y, px, py);
@@ -313,9 +313,9 @@ function savePDF() {
   console.log('Zufällige PDF:', randomFile);
 
   // Download 1: Canvas-PDF
-  pdf.save('zeichnung.pdf');
+  pdf.save('pattern.pdf');
   
-  console.log('Download 1: zeichnung.pdf');
+  console.log('Download 1: pattern.pdf');
 
   // Download 2: Random-PDF nach 1.5 Sekunden (Browser erlauben verzögerte Downloads)
   setTimeout(() => {
@@ -348,7 +348,7 @@ function printCanvas() {
   img.src = c.toDataURL('image/png');
   img.onload = () => {
     const printWindow = window.open('', '', 'height=400,width=600');
-    printWindow.document.write(`<html><head><title>Zeichnung</title></head><body>`);
+    printWindow.document.write(`<html><head><title>pattern</title></head><body>`);
     printWindow.document.write(`<img src="${img.src}" style="max-width:100%;height:auto;">`);
     printWindow.document.write(`</body></html>`);
     printWindow.document.close();

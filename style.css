@@ -110,20 +110,19 @@ align-items: center;
 
 
 
-
 #clearBtn {
   background-image: url("newbtn.svg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  width: 195px;
+  width: 244px;
   height: 130px;
   border: none;
   background-color: transparent;
   cursor: pointer;
   display: flex;
   order: 2;
-  transform: translateY(90px);
+  transform: translateX(-75px) translateY(-5px);
 }
 
 .outButton {
@@ -152,23 +151,18 @@ align-items: center;
 
 .about {
   display: flex;
-  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
   width: 100%;
+  align-items: flex-end;
 }
 
 #aboutBar {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  justify-content: space-between;
-  flex-wrap: wrap;
   width: 100%;
+  transform: translateY(91px) translateX(-87px)
 }
 
-#aboutBar button {
-  transform: translateY(86px) translateX(-80px);
-  z-index: 3;
-}
+
 
 
 
